@@ -1,7 +1,7 @@
 package com.ruoyi.system.controller;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.system.mq.producer.DelayProducer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,9 +23,9 @@ public class TestMqController {
 	@GetMapping("/send")
 	@ApiOperationSupport(order = 1)
 	@ApiOperation(value = "发送消息", notes = "发送消息")
-	public AjaxResult send(Long delay) {
+	public R<Void> send(Long delay) {
 		delayProducer.sendMsg(delay);
-		return AjaxResult.success("success");
+		return R.ok();
 	}
 
 }
