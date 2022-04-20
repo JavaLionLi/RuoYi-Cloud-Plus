@@ -302,6 +302,40 @@ services:
     networks:
       - ruoyi_net
 
+# ==========================================================================
+# ============================= 监控组 ======================================
+# ==========================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    privileged: true
+    restart: always
+    networks:
+      ruoyi_net:
+        ipv4_address: 172.30.0.190
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      TZ: Asia/Shanghai
+      # 服务地址 用于指定外网ip或域名
+      GF_SERVER_ROOT_URL: ""
+      # admin 管理员密码
+      GF_SECURITY_ADMIN_PASSWORD: 123456
+    ports:
+      - "3000:3000"
+    volumes:
+      - /docker/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - /docker/grafana:/var/lib/grafana
+    privileged: true
+    restart: always
+    networks:
+      - ruoyi_net
+
 networks:
   ruoyi_net:
     driver: bridge
