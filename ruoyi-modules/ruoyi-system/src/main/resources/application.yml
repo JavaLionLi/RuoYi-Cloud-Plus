@@ -11,7 +11,7 @@ spring:
     # 环境配置
     active: @profiles.active@
 
----
+--- # rabbitmq 配置
 spring:
   rabbitmq:
     host: localhost
@@ -42,6 +42,50 @@ spring:
           content-type: application/json
           group: delay-group
           binder: rabbit
+
+--- # rocketmq 配置
+spring:
+  cloud:
+    stream:
+      function:
+        # 重点配置 与 binding 名与消费者对应
+        definition: demo
+      rocketmq:
+        binder:
+          # rocketmq 地址
+          name-server: localhost:9876
+      bindings:
+        demo-out-0:
+          content-type: application/json
+          destination: stream-test-topic
+          group: test-group
+          binder: rocketmq
+        demo-in-0:
+          content-type: application/json
+          destination: stream-test-topic
+          group: test-group
+          binder: rocketmq
+
+--- # kafka 配置
+spring:
+  cloud:
+    stream:
+      function:
+        definition: log
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        log-out-0:
+          destination: stream-log-topic
+          contentType: application/json
+          group: log_group
+          binder: kafka
+        log-in-0:
+          destination: stream-log-topic
+          contentType: application/json
+          group: log_group
+          binder: kafka
 
 --- # nacos 配置
 spring:
