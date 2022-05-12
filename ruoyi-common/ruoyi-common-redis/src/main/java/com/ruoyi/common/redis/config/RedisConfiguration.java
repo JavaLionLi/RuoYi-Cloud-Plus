@@ -1,9 +1,9 @@
-package com.ruoyi.common.es.config;
+package com.ruoyi.common.redis.config;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.ruoyi.common.core.utils.JsonUtils;
 import com.ruoyi.common.core.utils.StringUtils;
-import com.ruoyi.common.es.config.properties.RedissonProperties;
+import com.ruoyi.common.redis.config.properties.RedissonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
