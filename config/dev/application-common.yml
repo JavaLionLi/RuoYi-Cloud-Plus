@@ -98,6 +98,9 @@ spring:
       transport:
         # 控制台地址
         dashboard: localhost:8718
+  elasticsearch:
+        uris:
+          - localhost:9200
 
   # redis通用配置 子服务可以自行配置进行覆盖
   redis:

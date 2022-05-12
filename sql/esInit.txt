@@ -1,0 +1,25 @@
+// 创建索引
+
+put /sys_user/
+
+{
+        "mappings": {
+            "properties": {
+                "user_id": {
+                    "type": "long"
+                },
+                "user_type":{
+                  "type": "integer"
+                },
+               "nick_name":{
+                  "type": "keyword",
+                   "ignore_above": 256
+                },
+                "user_name": {
+                    "type": "text"
+                     }
+            }
+                }
+            }
+
+

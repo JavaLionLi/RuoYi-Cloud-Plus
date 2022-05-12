@@ -1,4 +1,4 @@
-package com.ruoyi.common.redis.utils;
+package com.ruoyi.common.es.utils;
 
 import cn.hutool.core.collection.IterUtil;
 import com.ruoyi.common.core.utils.SpringUtils;

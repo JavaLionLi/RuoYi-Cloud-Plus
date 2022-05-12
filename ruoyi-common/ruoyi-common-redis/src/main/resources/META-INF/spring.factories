@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.ruoyi.common.redis.config.RedisConfiguration
+  com.ruoyi.common.es.config.RedisConfiguration
 
 

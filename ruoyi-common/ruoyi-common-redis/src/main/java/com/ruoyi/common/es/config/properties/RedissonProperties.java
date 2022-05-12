@@ -1,10 +1,9 @@
-package com.ruoyi.common.redis.config.properties;
+package com.ruoyi.common.es.config.properties;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.redisson.config.ReadMode;
 import org.redisson.config.SubscriptionMode;
-import org.redisson.config.TransportMode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;

@@ -11,7 +11,7 @@ import com.ruoyi.common.core.utils.MessageUtils;
 import com.ruoyi.common.core.utils.ServletUtils;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.idempotent.annotation.RepeatSubmit;
-import com.ruoyi.common.redis.utils.RedisUtils;
+import com.ruoyi.common.es.utils.RedisUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
