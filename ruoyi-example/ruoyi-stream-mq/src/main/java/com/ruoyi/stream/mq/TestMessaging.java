@@ -1,4 +1,4 @@
-package com.ruoyi.system.mq;
+package com.ruoyi.stream.mq;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
