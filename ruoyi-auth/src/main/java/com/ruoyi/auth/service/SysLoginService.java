@@ -9,6 +9,7 @@ import com.ruoyi.common.core.constant.Constants;
 import com.ruoyi.common.core.enums.DeviceType;
 import com.ruoyi.common.core.enums.LoginType;
 import com.ruoyi.common.core.enums.UserType;
+import com.ruoyi.common.core.exception.user.CaptchaExpireException;
 import com.ruoyi.common.core.exception.user.UserException;
 import com.ruoyi.common.core.utils.MessageUtils;
 import com.ruoyi.common.core.utils.ServletUtils;
@@ -24,7 +25,7 @@ import com.ruoyi.system.api.model.XcxLoginUser;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import java.util.function.Supplier;
 
 /**
@@ -130,8 +131,12 @@ public class SysLoginService {
      * 校验短信验证码
      */
     private boolean validateSmsCode(String phonenumber, String smsCode) {
-        // todo 此处使用手机号查询redis验证码与参数验证码是否一致 用户自行实现
-        return true;
+        String code = RedisUtils.getCacheObject(Constants.CAPTCHA_CODE_KEY + phonenumber);
+        if (StringUtils.isBlank(code)) {
+            recordLogininfor(phonenumber, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.expire"));
+            throw new CaptchaExpireException();
+        }
+        return code.equals(smsCode);
     }
 
     /**
@@ -156,7 +161,7 @@ public class SysLoginService {
             errorNumber = ObjectUtil.isNull(errorNumber) ? 1 : errorNumber + 1;
             // 达到规定错误次数 则锁定登录
             if (errorNumber.equals(setErrorNumber)) {
-                RedisUtils.setCacheObject(errorKey, errorNumber, errorLimitTime, TimeUnit.MINUTES);
+                RedisUtils.setCacheObject(errorKey, errorNumber, Duration.ofMinutes(errorLimitTime));
                 recordLogininfor(username, loginFail, MessageUtils.message(loginType.getRetryLimitExceed(), errorLimitTime));
                 throw new UserException(loginType.getRetryLimitExceed(), errorLimitTime);
             } else {

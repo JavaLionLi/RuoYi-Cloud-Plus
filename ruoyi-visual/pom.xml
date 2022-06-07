@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ruoyi</groupId>
         <artifactId>ruoyi-cloud-plus</artifactId>
-        <version>0.10.0</version>
+        <version>0.12.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,6 +13,7 @@
         <module>ruoyi-xxl-job-admin</module>
         <module>ruoyi-doc</module>
         <module>ruoyi-sentinel-dashboard</module>
+        <module>ruoyi-seata-server</module>
     </modules>
 
     <artifactId>ruoyi-visual</artifactId>

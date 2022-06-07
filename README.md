@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus/blob/master/LICENSE)
 [![使用IntelliJ IDEA开发维护](https://img.shields.io/badge/IntelliJ%20IDEA-提供支持-blue.svg)](https://www.jetbrains.com/?from=RuoYi-Cloud-Plus)
 <br>
-[![RuoYi-Cloud-Plus](https://img.shields.io/badge/RuoYi_Cloud_Plus-0.10.0-success.svg)](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus)
+[![RuoYi-Cloud-Plus](https://img.shields.io/badge/RuoYi_Cloud_Plus-0.12.0-success.svg)](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.6-blue.svg)]()
 [![JDK-8+](https://img.shields.io/badge/JDK-8-green.svg)]()
 [![JDK-11](https://img.shields.io/badge/JDK-11-green.svg)]()
@@ -41,6 +41,7 @@
 | 分布式消息队列(未完成) | Apache RocketMQ          | [Apache RocketMQ文档](http://rocketmq.apache.org/)                                                  | 高可用功能多样                      |
 | 分布式消息队列(未完成) | RabbitMQ                 | [RabbitMQ文档](https://www.rabbitmq.com/)                                                           | 支持各种扩展插件功能多样性                |
 | 分布式搜索引擎(未完成) | ElasticSearch            | [ElasticSearch官网](https://www.elastic.co/cn/elasticsearch/)                                       | 业界知名                         |
+| 分布式数据同步(未完成) | Alibaba Canal            | [Alibaba Canal官网](https://github.com/alibaba/canal/wiki)                                          | 采集数据同步各种数据库 ES Redis Mysql   |
 | 分布式链路追踪(未完成) | Apache SkyWalking        | [Apache SkyWalking文档](https://skywalking.apache.org/docs/)                                        | 链路追踪、网格分析、度量聚合、可视化           |
 | 分布式日志中心(未完成) | ELK                      | [ElasticSearch官网](https://www.elastic.co/cn/elasticsearch/)                                       | ELK业界成熟解决方案                  |
 | 分布式锁         | Lock4j                   | [Lock4j官网](https://gitee.com/baomidou/lock4j)                                                     | 注解锁、工具锁 多种多样                 |
@@ -48,6 +49,7 @@
 | 分布式任务调度      | Xxl-Job                  | [Xxl-Job官网](https://www.xuxueli.com/xxl-job/)                                                     | 高性能 高可靠 易扩展                  |
 | 分布式文件存储      | Minio                    | [Minio文档](https://docs.min.io/)                                                                   | 本地存储                         |
 | 分布式云存储       | 七牛、阿里、腾讯                 | [OSS使用文档](https://gitee.com/JavaLionLi/RuoYi-Vue-Plus/wikis/pages?sort_id=4359146&doc_id=1469725) | 云存储                          |
+| 短信模块         | 阿里、腾讯                    | [短信使用文档](https://gitee.com/JavaLionLi/RuoYi-Vue-Plus/wikis/pages?sort_id=5578491&doc_id=1469725)  | 短信发送                         |
 | 分布式监控(未完成)   | Prometheus、Grafana       | [Prometheus文档](https://prometheus.io/docs/introduction/overview/)                                 | 全方位性能监控                      |
 | 服务监控         | SpringBoot-Admin         | [SpringBoot-Admin文档](https://codecentric.github.io/spring-boot-admin/current/)                    | 全方位服务监控                      |
 | 数据库框架        | Mybatis-Plus             | [Mybatis-Plus文档](https://baomidou.com/guide/)                                                     | 快速 CRUD 增加开发效率               |
@@ -79,7 +81,7 @@
 
 ## 软件架构图
 
-<img src="https://oscimg.oschina.net/oscnet/up-82e9722ecb846786405a904bafcf19f73f3.png"/>
+<img src="https://images.gitee.com/uploads/images/2022/0520/152809_0edbfaf1_1766278.png"/>
 
 ## 贡献代码
 

@@ -26,13 +26,16 @@ security:
       - /auth/smsLogin
       - /auth/xcxLogin
       - /auth/register
-      - /*/v2/api-docs
+      - /resource/sms/code
+      - /*/v3/api-docs
       - /csrf
 
 spring:
   cloud:
     # 网关配置
     gateway:
+      # 打印请求日志(自定义)
+      requestLog: true
       discovery:
         locator:
           lowerCaseServiceId: true
@@ -45,7 +48,6 @@ spring:
             - Path=/auth/**
           filters:
             # 验证码处理
-            - CacheRequestFilter
             - ValidateCodeFilter
             - StripPrefix=1
         # 代码生成
@@ -67,6 +69,13 @@ spring:
           uri: lb://ruoyi-resource
           predicates:
             - Path=/resource/**
+          filters:
+            - StripPrefix=1
+        # 演示服务
+        - id: ruoyi-demo
+          uri: lb://ruoyi-demo
+          predicates:
+            - Path=/demo/**
           filters:
             - StripPrefix=1
 

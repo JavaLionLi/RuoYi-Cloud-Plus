@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql:
-    image: mysql:8.0.27
+    image: mysql:8.0.29
     container_name: mysql
     environment:
       # 时区上海
@@ -32,7 +32,7 @@ services:
         ipv4_address: 172.30.0.36
 
   nacos:
-    image: nacos/nacos-server:v2.0.4
+    image: nacos/nacos-server:v2.1.0
     container_name: nacos
     ports:
       - "8848:8848"
@@ -58,7 +58,7 @@ services:
         ipv4_address: 172.30.0.40
 
   redis:
-    image: redis:6.2.6
+    image: redis:6.2.7
     container_name: redis
     ports:
       - "6379:6379"
@@ -78,7 +78,7 @@ services:
         ipv4_address: 172.30.0.48
 
   minio:
-    image: minio/minio:RELEASE.2021-10-27T16-29-42Z
+    image: minio/minio:RELEASE.2022-05-26T05-48-41Z
     container_name: minio
     ports:
       # api 端口
@@ -113,27 +113,25 @@ services:
         ipv4_address: 172.30.0.54
 
   seata-server:
-    image: seataio/seata-server:1.4.2
+    image: ruoyi/ruoyi-seata-server:0.12.0
     container_name: seata-server
     ports:
+      - "7091:7091"
       - "8091:8091"
     environment:
       TZ: Asia/Shanghai
       # 注意 此处ip如果是外网使用 要改为外网ip
-      SEATA_IP: 172.30.0.58
+      # SEATA_IP: 127.0.0.1
       SEATA_PORT: 8091
-      STORE_MODE: db
-      SEATA_CONFIG_NAME: file:/root/seata-config/registry
     volumes:
-      - /docker/seata/config:/root/seata-config
+      - /docker/ruoyi-seata-server/logs/:/ruoyi/seata-server/logs
     privileged: true
     restart: always
     networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.58
+      - ruoyi_net
 
   nginx-web:
-    image: nginx:1.21.3
+    image: nginx:1.21.6
     container_name: nginx-web
     environment:
       # 时区上海
@@ -156,7 +154,7 @@ services:
       - ruoyi_net
 
   sentinel:
-    image: ruoyi/ruoyi-sentinel-dashboard:0.10.0
+    image: ruoyi/ruoyi-sentinel-dashboard:0.12.0
     container_name: sentinel
     environment:
       TZ: Asia/Shanghai
@@ -171,7 +169,7 @@ services:
         ipv4_address: 172.30.0.68
 
   ruoyi-monitor-admin:
-    image: ruoyi/ruoyi-monitor:0.10.0
+    image: ruoyi/ruoyi-monitor:0.12.0
     container_name: ruoyi-monitor
     environment:
       # 时区上海
@@ -188,7 +186,7 @@ services:
         ipv4_address: 172.30.0.90
 
   ruoyi-xxl-job-admin:
-    image: ruoyi/ruoyi-xxl-job-admin:0.10.0
+    image: ruoyi/ruoyi-xxl-job-admin:0.12.0
     container_name: ruoyi-xxl-job-admin
     environment:
       # 时区上海
@@ -205,7 +203,7 @@ services:
         ipv4_address: 172.30.0.92
 
   ruoyi-gateway:
-    image: ruoyi/ruoyi-gateway:0.10.0
+    image: ruoyi/ruoyi-gateway:0.12.0
     container_name: ruoyi-gateway
     environment:
       # 时区上海
@@ -222,7 +220,7 @@ services:
         ipv4_address: 172.30.0.100
 
   ruoyi-auth:
-    image: ruoyi/ruoyi-auth:0.10.0
+    image: ruoyi/ruoyi-auth:0.12.0
     container_name: ruoyi-auth
     environment:
       # 时区上海
@@ -239,7 +237,7 @@ services:
         ipv4_address: 172.30.0.110
 
   ruoyi-system:
-    image: ruoyi/ruoyi-system:0.10.0
+    image: ruoyi/ruoyi-system:0.12.0
     container_name: ruoyi-system
     environment:
       # 时区上海
@@ -255,7 +253,7 @@ services:
       - ruoyi_net
 
   ruoyi-gen:
-    image: ruoyi/ruoyi-gen:0.10.0
+    image: ruoyi/ruoyi-gen:0.12.0
     container_name: ruoyi-gen
     environment:
       # 时区上海
@@ -271,7 +269,7 @@ services:
       - ruoyi_net
 
   ruoyi-job:
-    image: ruoyi/ruoyi-job:0.10.0
+    image: ruoyi/ruoyi-job:0.12.0
     container_name: ruoyi-job
     environment:
       # 时区上海
@@ -287,7 +285,7 @@ services:
       - ruoyi_net
 
   ruoyi-resource:
-    image: ruoyi/ruoyi-resource:0.10.0
+    image: ruoyi/ruoyi-resource:0.12.0
     container_name: ruoyi-resource
     environment:
       # 时区上海

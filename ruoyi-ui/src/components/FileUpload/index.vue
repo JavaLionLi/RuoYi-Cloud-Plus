@@ -82,11 +82,21 @@ export default {
   },
   watch: {
     value: {
-      handler(val) {
+      async handler(val) {
         if (val) {
           let temp = 1;
           // 首先将值转为数组
-          const list = Array.isArray(val) ? val : this.value.split(',');
+          let list;
+          if (Array.isArray(val)) {
+            list = val;
+          } else {
+            await listByIds(val).then(res => {
+              list = res.data.map(oss => {
+                oss = { name: oss.originalName, url: oss.url, ossId: oss.ossId };
+                return oss;
+              });
+            })
+          }
           // 然后将数组转为对象数组
           this.fileList = list.map(item => {
             item = { name: item.name, url: item.url, ossId: item.ossId };
@@ -156,7 +166,7 @@ export default {
           this.fileList = this.fileList.concat(this.uploadList);
           this.uploadList = [];
           this.number = 0;
-          this.$emit("input", this.fileList);
+          this.$emit("input", this.listToString(this.fileList));
           this.$modal.closeLoading();
         }
       } else {
@@ -169,7 +179,7 @@ export default {
       let ossId = this.fileList[index].ossId;
       delOss(ossId);
       this.fileList.splice(index, 1);
-      this.$emit("input", this.fileList);
+      this.$emit("input", this.listToString(this.fileList));
     },
     // 获取文件名称
     getFileName(name) {
@@ -178,6 +188,15 @@ export default {
       } else {
         return name;
       }
+    },
+    // 对象转成指定字符串分隔
+    listToString(list, separator) {
+      let strs = "";
+      separator = separator || ",";
+      for (let i in list) {
+        strs += list[i].ossId + separator;
+      }
+      return strs != "" ? strs.substr(0, strs.length - 1) : "";
     },
   }
 };

@@ -33,6 +33,8 @@ dubbo:
     name: dubbo
     # dubbo 协议端口(-1表示自增端口,从20880开始)
     port: -1
+    # 指定dubbo协议注册ip
+    # host: 192.168.0.100
   # 注册中心配置
   registry:
     address: nacos://${spring.cloud.nacos.server-addr}
@@ -59,8 +61,6 @@ dubbo:
     log-level: info
 
 spring:
-  main:
-    allow-bean-definition-overriding: true
   mvc:
     pathmatch:
       # 适配 boot 2.6 路由与 springfox 兼容
@@ -103,7 +103,8 @@ spring:
   redis:
     host: localhost
     port: 6379
-    password:
+    # 密码(如没有密码请注释掉)
+    # password:
     database: 0
     timeout: 10s
     ssl: false
@@ -114,8 +115,6 @@ redisson:
   threads: 4
   # Netty线程池数量
   nettyThreads: 8
-  # 传输模式
-  transportMode: "NIO"
   # 单节点配置
   singleServerConfig:
     # 客户端名称
@@ -128,10 +127,6 @@ redisson:
     idleConnectionTimeout: 10000
     # 命令等待超时，单位：毫秒
     timeout: 3000
-    # 如果尝试在此限制之内发送成功，则开始启用 timeout 计时。
-    retryAttempts: 3
-    # 命令重试发送时间间隔，单位：毫秒
-    retryInterval: 1500
     # 发布和订阅连接池大小
     subscriptionConnectionPoolSize: 50
   # redisson 缓存配置
@@ -188,16 +183,12 @@ sa-token:
   is-concurrent: true
   # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
   is-share: false
-  # 是否尝试从请求体里读取token
-  is-read-body: false
   # 是否尝试从header里读取token
   is-read-head: true
   # 是否尝试从cookie里读取token
   is-read-cookie: false
   # token前缀
   token-prefix: "Bearer"
-  # token风格
-  token-style: uuid
   # jwt秘钥
   jwt-secret-key: abcdefghijklmnopqrstuvwxyz
   # 是否输出操作日志
@@ -298,7 +289,7 @@ seata:
   registry:
     type: nacos
     nacos:
-      application: seata-server
+      application: ruoyi-seata-server
       server-addr: ${spring.cloud.nacos.server-addr}
       group: ${spring.cloud.nacos.discovery.group}
       namespace: ${spring.profiles.active}

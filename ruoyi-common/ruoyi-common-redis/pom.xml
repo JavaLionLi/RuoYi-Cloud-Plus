@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.ruoyi</groupId>
         <artifactId>ruoyi-common</artifactId>
-        <version>0.10.0</version>
+        <version>0.12.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,6 +16,11 @@
     </description>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
 
         <!-- SpringBoot Boot Redis -->
         <dependency>
