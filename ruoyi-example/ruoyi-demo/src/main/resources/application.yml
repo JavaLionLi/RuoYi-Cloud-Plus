@@ -28,12 +28,14 @@ spring:
   config:
     import:
       - optional:nacos:application-common.yml
+      - optional:nacos:ruoyi-resource.yml
       - optional:nacos:datasource.yml
 
 --- # 数据源设置 需在 system 数据源下 执行 test.sql 文件
 spring:
   datasource:
     dynamic:
+      seata: false
       # 设置默认的数据源或者数据源组,默认值即为 master
       primary: master
       datasource:

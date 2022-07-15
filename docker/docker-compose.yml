@@ -26,10 +26,7 @@ services:
       --explicit_defaults_for_timestamp=true
       --lower_case_table_names=1
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.36
+    network_mode: "host"
 
   nacos:
     image: nacos/nacos-server:v2.1.0
@@ -42,7 +39,7 @@ services:
       TZ: Asia/Shanghai
       MODE: standalone
       SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: 172.30.0.36
+      MYSQL_SERVICE_HOST: 127.0.0.1
       MYSQL_SERVICE_PORT: 3306
       MYSQL_SERVICE_USER: root
       MYSQL_SERVICE_PASSWORD: ruoyi123
@@ -52,10 +49,7 @@ services:
       - /docker/nacos/logs/:/home/nacos/logs
       - /docker/nacos/config/custom.properties:/home/nacos/init.d/custom.properties
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.40
+    network_mode: "host"
 
   redis:
     image: redis:6.2.7
@@ -72,10 +66,7 @@ services:
       - /docker/redis/data/:/redis/data/
     command: "redis-server /redis/config/redis.conf"
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.48
+    network_mode: "host"
 
   minio:
     image: minio/minio:RELEASE.2022-05-26T05-48-41Z
@@ -107,13 +98,10 @@ services:
       - /docker/minio/config:/root/.minio/
     command: server --address ':9000' --console-address ':9001' /data  # 指定容器中的目录 /data
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.54
+    network_mode: "host"
 
   seata-server:
-    image: ruoyi/ruoyi-seata-server:0.12.0
+    image: ruoyi/ruoyi-seata-server:1.0.0
     container_name: seata-server
     ports:
       - "7091:7091"
@@ -126,9 +114,7 @@ services:
     volumes:
       - /docker/ruoyi-seata-server/logs/:/ruoyi/seata-server/logs
     privileged: true
-    restart: always
-    networks:
-      - ruoyi_net
+    network_mode: "host"
 
   nginx-web:
     image: nginx:1.21.6
@@ -149,12 +135,10 @@ services:
       # 日志目录
       - /docker/nginx/log:/var/log/nginx
     privileged: true
-    restart: always
-    networks:
-      - ruoyi_net
+    network_mode: "host"
 
   sentinel:
-    image: ruoyi/ruoyi-sentinel-dashboard:0.12.0
+    image: ruoyi/ruoyi-sentinel-dashboard:1.0.0
     container_name: sentinel
     environment:
       TZ: Asia/Shanghai
@@ -164,12 +148,10 @@ services:
       # 配置文件
       - /docker/ruoyi-sentinel-dashboard/logs/:/ruoyi/sentinel-dashboard/logs
     restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.68
+    network_mode: "host"
 
   ruoyi-monitor-admin:
-    image: ruoyi/ruoyi-monitor:0.12.0
+    image: ruoyi/ruoyi-monitor:1.0.0
     container_name: ruoyi-monitor
     environment:
       # 时区上海
@@ -180,13 +162,10 @@ services:
       # 配置文件
       - /docker/ruoyi-monitor/logs/:/ruoyi/monitor/logs
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.90
+    network_mode: "host"
 
   ruoyi-xxl-job-admin:
-    image: ruoyi/ruoyi-xxl-job-admin:0.12.0
+    image: ruoyi/ruoyi-xxl-job-admin:1.0.0
     container_name: ruoyi-xxl-job-admin
     environment:
       # 时区上海
@@ -197,13 +176,10 @@ services:
       # 配置文件
       - /docker/ruoyi-xxl-job-admin/logs/:/ruoyi/xxl-job-admin/logs
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.92
+    network_mode: "host"
 
   ruoyi-gateway:
-    image: ruoyi/ruoyi-gateway:0.12.0
+    image: ruoyi/ruoyi-gateway:1.0.0
     container_name: ruoyi-gateway
     environment:
       # 时区上海
@@ -214,13 +190,10 @@ services:
       # 配置文件
       - /docker/ruoyi-gateway/logs/:/ruoyi/gateway/logs
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.100
+    network_mode: "host"
 
   ruoyi-auth:
-    image: ruoyi/ruoyi-auth:0.12.0
+    image: ruoyi/ruoyi-auth:1.0.0
     container_name: ruoyi-auth
     environment:
       # 时区上海
@@ -231,13 +204,10 @@ services:
       # 配置文件
       - /docker/ruoyi-auth/logs/:/ruoyi/auth/logs
     privileged: true
-    restart: always
-    networks:
-      ruoyi_net:
-        ipv4_address: 172.30.0.110
+    network_mode: "host"
 
   ruoyi-system:
-    image: ruoyi/ruoyi-system:0.12.0
+    image: ruoyi/ruoyi-system:1.0.0
     container_name: ruoyi-system
     environment:
       # 时区上海
@@ -248,12 +218,10 @@ services:
       # 配置文件
       - /docker/ruoyi-system/logs/:/ruoyi/system/logs
     privileged: true
-    restart: always
-    networks:
-      - ruoyi_net
+    network_mode: "host"
 
   ruoyi-gen:
-    image: ruoyi/ruoyi-gen:0.12.0
+    image: ruoyi/ruoyi-gen:1.0.0
     container_name: ruoyi-gen
     environment:
       # 时区上海
@@ -264,12 +232,10 @@ services:
       # 配置文件
       - /docker/ruoyi-gen/logs/:/ruoyi/gen/logs
     privileged: true
-    restart: always
-    networks:
-      - ruoyi_net
+    network_mode: "host"
 
   ruoyi-job:
-    image: ruoyi/ruoyi-job:0.12.0
+    image: ruoyi/ruoyi-job:1.0.0
     container_name: ruoyi-job
     environment:
       # 时区上海
@@ -280,12 +246,10 @@ services:
       # 配置文件
       - /docker/ruoyi-job/logs/:/ruoyi/job/logs
     privileged: true
-    restart: always
-    networks:
-      - ruoyi_net
+    network_mode: "host"
 
   ruoyi-resource:
-    image: ruoyi/ruoyi-resource:0.12.0
+    image: ruoyi/ruoyi-resource:1.0.0
     container_name: ruoyi-resource
     environment:
       # 时区上海
@@ -296,13 +260,161 @@ services:
       # 配置文件
       - /docker/ruoyi-resource/logs/:/ruoyi/resource/logs
     privileged: true
-    restart: always
-    networks:
-      - ruoyi_net
+    network_mode: "host"
 
-networks:
-  ruoyi_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.30.0.0/16
+
+#################################################################################################
+#################################### 以下为扩展根据需求搭建 #########################################
+#################################################################################################
+
+  elasticsearch:
+    image: elasticsearch:7.17.2
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      # 设置集群名称
+      cluster.name: elasticsearch
+      # 以单一节点模式启动
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - /docker/elk/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+      - /docker/elk/elasticsearch/data:/usr/share/elasticsearch/data
+      - /docker/elk/elasticsearch/logs:/usr/share/elasticsearch/logs
+    network_mode: "host"
+
+  kibana:
+    image: kibana:7.17.2
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      # kibana在elasticsearch启动之后再启动
+      - elasticsearch
+    environment:
+      #设置系统语言文中文
+      I18N_LOCALE: zh-CN
+      # 访问域名
+      # SERVER_PUBLICBASEURL: https://kibana.cloud.com
+    volumes:
+      - /docker/elk/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    network_mode: "host"
+
+  logstash:
+    image: logstash:7.17.2
+    container_name: logstash
+    ports:
+      - "4560:4560"
+    volumes:
+      - /docker/elk/logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /docker/elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+    depends_on:
+      - elasticsearch
+    network_mode: "host"
+
+  mqnamesrv:
+    image: apache/rocketmq:4.9.4
+    container_name: mqnamesrv
+    ports:
+      - "9876:9876"
+    environment:
+      JAVA_OPT: -server -Xms512m -Xmx512m
+    command: sh mqnamesrv
+    volumes:
+      - /docker/rocketmq/namesrv/logs:/home/rocketmq/logs/rocketmqlogs
+    network_mode: "host"
+
+  mqbroker1:
+    image: apache/rocketmq:4.9.4
+    container_name: mqbroker1
+    ports:
+      - "10911:10911"
+      - "10909:10909"
+      - "10912:10912"
+    environment:
+      JAVA_OPT_EXT: -server -Xms512M -Xmx512M -Xmn256m
+    command: sh mqbroker -c /home/rocketmq/rocketmq-4.9.4/conf/broker.conf
+    depends_on:
+      - mqnamesrv
+    volumes:
+      - /docker/rocketmq/broker1/conf/broker.conf:/home/rocketmq/rocketmq-4.9.4/conf/broker.conf
+      - /docker/rocketmq/broker1/logs:/home/rocketmq/logs/rocketmqlogs
+      - /docker/rocketmq/broker1/store:/home/rocketmq/store
+    network_mode: "host"
+
+  mqconsole:
+    image: styletang/rocketmq-console-ng
+    container_name: mqconsole
+    ports:
+      - "19876:19876"
+    environment:
+      JAVA_OPTS: -Dserver.port=19876 -Drocketmq.namesrv.addr=127.0.0.1:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
+    depends_on:
+      - mqnamesrv
+    network_mode: "host"
+
+  rabbitmq:
+    image: rabbitmq:3.10.6
+    container_name: rabbitmq
+    build:
+      context: ./rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ruoyi
+      RABBITMQ_DEFAULT_PASS: ruoyi123
+    ports:
+      - "15672:15672" # 管理界面端口
+      - "5672:5672"   # api 端口
+    volumes:
+      - /docker/rabbitmq/log:/var/log/rabbitmq
+      - /docker/rabbitmq/data:/var/lib/rabbitmq
+    network_mode: "host"
+
+  zookeeper:
+    image: 'bitnami/zookeeper:3.8.0'
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      TZ: Asia/Shanghai
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+      ZOO_SERVER_ID: 1
+      ZOO_PORT_NUMBER: 2181
+    network_mode: "host"
+
+  kafka:
+    image: 'bitnami/kafka:3.2.0'
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      TZ: Asia/Shanghai
+      # 更多变量 查看文档 https://github.com/bitnami/bitnami-docker-kafka/blob/master/README.md
+      KAFKA_BROKER_ID: 1
+      # 监听端口
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092
+      # 实际访问ip 本地用 127 内网用 192 外网用 外网ip
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://192.168.31.165:9092
+      KAFKA_CFG_ZOOKEEPER_CONNECT: 127.0.0.1:2181
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+    volumes:
+      - /docker/kafka/data:/bitnami/kafka/data
+    depends_on:
+      - zookeeper
+    network_mode: "host"
+
+  kafka-manager:
+    image: sheepkiller/kafka-manager:latest
+    container_name: kafka-manager
+    ports:
+      - "19092:19092"
+    environment:
+      ZK_HOSTS: 127.0.0.1:2181
+      APPLICATION_SECRET: letmein
+      KAFKA_MANAGER_USERNAME: ruoyi
+      KAFKA_MANAGER_PASSWORD: ruoyi123
+      KM_ARGS: -Dhttp.port=19092
+    depends_on:
+      - kafka
+    network_mode: "host"

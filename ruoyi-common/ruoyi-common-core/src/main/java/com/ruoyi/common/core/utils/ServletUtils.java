@@ -7,6 +7,7 @@ import com.ruoyi.common.core.constant.Constants;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -20,7 +21,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -120,7 +120,7 @@ public class ServletUtils extends ServletUtil {
     }
 
     public static Map<String, String> getHeaders(HttpServletRequest request) {
-        Map<String, String> map = new LinkedHashMap<>();
+        Map<String, String> map = new LinkedCaseInsensitiveMap<>();
         Enumeration<String> enumeration = request.getHeaderNames();
         if (enumeration != null) {
             while (enumeration.hasMoreElements()) {

@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.ruoyi</groupId>
         <artifactId>ruoyi-cloud-plus</artifactId>
-        <version>0.12.0</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,5 +22,13 @@
     <description>
         ruoyi-visual图形化管理模块
     </description>
+
+    <dependencies>
+        <!-- ELK 日志收集 -->
+<!--        <dependency>-->
+<!--            <groupId>com.ruoyi</groupId>-->
+<!--            <artifactId>ruoyi-common-logstash</artifactId>-->
+<!--        </dependency>-->
+    </dependencies>
 
 </project>

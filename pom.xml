@@ -6,48 +6,50 @@
 
     <groupId>com.ruoyi</groupId>
     <artifactId>ruoyi-cloud-plus</artifactId>
-    <version>0.12.0</version>
+    <version>1.0.0</version>
 
     <name>RuoYi-Cloud-Plus</name>
     <url>https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus</url>
     <description>RuoYi-Cloud-Plus微服务系统</description>
 
     <properties>
-        <ruoyi.version>0.12.0</ruoyi.version>
+        <ruoyi.version>1.0.0</ruoyi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.6.8</spring-boot.version>
+        <spring-boot.version>2.6.9</spring-boot.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
         <spring-boot.mybatis>2.2.2</spring-boot.mybatis>
+        <mybatis.version>3.5.10</mybatis.version>
         <swagger.core.version>1.5.22</swagger.core.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <p6spy.version>3.9.1</p6spy.version>
-        <druid.version>1.2.9</druid.version>
+        <druid.version>1.2.11</druid.version>
         <dynamic-ds.version>3.5.1</dynamic-ds.version>
         <velocity.version>2.3</velocity.version>
         <fastjson.version>1.2.83</fastjson.version>
         <poi.version>5.2.2</poi.version>
-        <easyexcel.version>3.1.0</easyexcel.version>
-        <hutool.version>5.8.2</hutool.version>
-        <redisson.version>3.17.2</redisson.version>
+        <easyexcel.version>3.1.1</easyexcel.version>
+        <hutool.version>5.8.3</hutool.version>
+        <redisson.version>3.17.4</redisson.version>
         <lock4j.version>2.2.2</lock4j.version>
         <xxl-job.version>2.3.1</xxl-job.version>
         <knife4j-aggregation.version>2.0.9</knife4j-aggregation.version>
         <knife4j.version>3.0.3</knife4j.version>
         <satoken.version>1.30.0</satoken.version>
+        <logstash.version>7.1.1</logstash.version>
 
         <!-- 统一 guava 版本 解决隐式漏洞问题 -->
         <guava.version>30.0-jre</guava.version>
 
         <!-- OSS 配置 -->
-        <aws-java-sdk-s3.version>1.12.215</aws-java-sdk-s3.version>
+        <aws-java-sdk-s3.version>1.12.248</aws-java-sdk-s3.version>
         <okhttp.version>4.9.3</okhttp.version>
 
         <!-- SMS 配置 -->
         <aliyun.sms.version>2.0.9</aliyun.sms.version>
-        <tencent.sms.version>3.1.500</tencent.sms.version>
+        <tencent.sms.version>3.1.537</tencent.sms.version>
 
         <!-- docker 配置 -->
         <docker.registry.url>localhost</docker.registry.url>
@@ -65,6 +67,7 @@
                 <nacos.server>127.0.0.1:8848</nacos.server>
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
                 <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <logstash.address>127.0.0.1:4560</logstash.address>
             </properties>
             <activation>
                 <!-- 默认环境 -->
@@ -78,6 +81,7 @@
                 <nacos.server>127.0.0.1:8848</nacos.server>
                 <nacos.discovery.group>DEFAULT_GROUP</nacos.discovery.group>
                 <nacos.config.group>DEFAULT_GROUP</nacos.config.group>
+                <logstash.address>127.0.0.1:4560</logstash.address>
             </properties>
         </profile>
     </profiles>
@@ -151,6 +155,12 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${spring-boot.mybatis}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
 
             <dependency>
@@ -231,6 +241,13 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
+            </dependency>
+
+            <!-- logstash -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
             </dependency>
 
             <dependency>
@@ -337,6 +354,7 @@
                 <includes>
                     <include>application*</include>
                     <include>bootstrap*</include>
+                    <include>logback*</include>
                 </includes>
                 <!-- 启用过滤 即该资源中的变量将会被过滤器中的值替换 -->
                 <filtering>true</filtering>

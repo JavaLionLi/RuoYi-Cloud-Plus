@@ -30,7 +30,7 @@ public class SaTokenDubboConsumerFilter implements Filter {
 
         // 追加 Id-Token 参数
 		if(SaManager.getConfig().getCheckIdToken()) {
-			RpcContext.getServiceContext().setAttachment(SaIdUtil.ID_TOKEN, SaIdUtil.getToken());
+            RpcContext.getServiceContext().setAttachment(SaIdUtil.ID_TOKEN, SaIdUtil.getToken());
 		}
 
 		// 1. 调用前，向下传递会话Token

@@ -1,11 +1,11 @@
-## 平台简介(公测)
+## 平台简介
 
 [![码云Gitee](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus/badge/star.svg?theme=blue)](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus)
 [![GitHub](https://img.shields.io/github/stars/JavaLionLi/RuoYi-Cloud-Plus.svg?style=social&label=Stars)](https://github.com/JavaLionLi/RuoYi-Cloud-Plus)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus/blob/master/LICENSE)
 [![使用IntelliJ IDEA开发维护](https://img.shields.io/badge/IntelliJ%20IDEA-提供支持-blue.svg)](https://www.jetbrains.com/?from=RuoYi-Cloud-Plus)
 <br>
-[![RuoYi-Cloud-Plus](https://img.shields.io/badge/RuoYi_Cloud_Plus-0.12.0-success.svg)](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus)
+[![RuoYi-Cloud-Plus](https://img.shields.io/badge/RuoYi_Cloud_Plus-1.0.0-success.svg)](https://gitee.com/JavaLionLi/RuoYi-Cloud-Plus)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.6-blue.svg)]()
 [![JDK-8+](https://img.shields.io/badge/JDK-8-green.svg)]()
 [![JDK-11](https://img.shields.io/badge/JDK-11-green.svg)]()
@@ -43,7 +43,7 @@
 | 分布式搜索引擎(未完成) | ElasticSearch            | [ElasticSearch官网](https://www.elastic.co/cn/elasticsearch/)                                       | 业界知名                         |
 | 分布式数据同步(未完成) | Alibaba Canal            | [Alibaba Canal官网](https://github.com/alibaba/canal/wiki)                                          | 采集数据同步各种数据库 ES Redis Mysql   |
 | 分布式链路追踪(未完成) | Apache SkyWalking        | [Apache SkyWalking文档](https://skywalking.apache.org/docs/)                                        | 链路追踪、网格分析、度量聚合、可视化           |
-| 分布式日志中心(未完成) | ELK                      | [ElasticSearch官网](https://www.elastic.co/cn/elasticsearch/)                                       | ELK业界成熟解决方案                  |
+| 分布式日志中心      | ELK                      | [ElasticSearch官网](https://www.elastic.co/cn/elasticsearch/)                                       | ELK业界成熟解决方案                  |
 | 分布式锁         | Lock4j                   | [Lock4j官网](https://gitee.com/baomidou/lock4j)                                                     | 注解锁、工具锁 多种多样                 |
 | 分布式幂等        | Redisson                 | [Lock4j文档](https://gitee.com/baomidou/lock4j)                                                     | 拦截重复提交                       |
 | 分布式任务调度      | Xxl-Job                  | [Xxl-Job官网](https://www.xuxueli.com/xxl-job/)                                                     | 高性能 高可靠 易扩展                  |
