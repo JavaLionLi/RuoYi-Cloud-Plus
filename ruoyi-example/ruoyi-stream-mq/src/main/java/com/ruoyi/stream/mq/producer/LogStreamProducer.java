@@ -14,11 +14,11 @@ public class LogStreamProducer {
     @Autowired
     private StreamBridge streamBridge;
 
-    public void streamLogMsg(String msg){
+    public void streamLogMsg(String msg) {
         // 构建消息对象
         TestMessaging testMessaging = new TestMessaging()
-                .setMsgId(UUID.randomUUID().toString())
-                .setMsgText(msg);
+            .setMsgId(UUID.randomUUID().toString())
+            .setMsgText(msg);
         streamBridge.send("log-out-0", MessageBuilder.withPayload(testMessaging).build());
     }
 }

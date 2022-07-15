@@ -12,16 +12,16 @@ import java.util.UUID;
 @Component
 public class DelayProducer {
 
-	@Autowired
-	private StreamBridge streamBridge;
+    @Autowired
+    private StreamBridge streamBridge;
 
-	public void sendMsg(String msg, Long delay) {
+    public void sendMsg(String msg, Long delay) {
         // 构建消息对象
         TestMessaging testMessaging = new TestMessaging()
             .setMsgId(UUID.randomUUID().toString())
             .setMsgText(msg);
-		Message<TestMessaging> message = MessageBuilder.withPayload(testMessaging)
-			.setHeader("x-delay", delay).build();
+        Message<TestMessaging> message = MessageBuilder.withPayload(testMessaging)
+            .setHeader("x-delay", delay).build();
         streamBridge.send("delay-out-0", message);
-	}
+    }
 }

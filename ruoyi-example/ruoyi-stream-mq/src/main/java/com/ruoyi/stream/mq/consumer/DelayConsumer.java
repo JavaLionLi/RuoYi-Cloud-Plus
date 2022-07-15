@@ -12,11 +12,11 @@ import java.util.function.Consumer;
 @Component
 public class DelayConsumer {
 
-	@Bean
+    @Bean
     Consumer<TestMessaging> delay() {
         log.info("初始化订阅");
         return obj -> {
             log.info("消息接收成功：" + obj);
         };
-	}
+    }
 }

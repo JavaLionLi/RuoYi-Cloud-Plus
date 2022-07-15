@@ -14,11 +14,11 @@ public class TestStreamProducer {
     @Autowired
     private StreamBridge streamBridge;
 
-    public void streamTestMsg(String msg){
+    public void streamTestMsg(String msg) {
         // 构建消息对象
         TestMessaging testMessaging = new TestMessaging()
-                .setMsgId(UUID.randomUUID().toString())
-                .setMsgText(msg);
+            .setMsgId(UUID.randomUUID().toString())
+            .setMsgText(msg);
         streamBridge.send("demo-out-0", MessageBuilder.withPayload(testMessaging).build());
     }
 }

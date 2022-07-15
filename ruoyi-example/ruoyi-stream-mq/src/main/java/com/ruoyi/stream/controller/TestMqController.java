@@ -21,17 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "测试mq", tags = "测试mq")
 public class TestMqController {
 
-	private final DelayProducer delayProducer;
+    private final DelayProducer delayProducer;
     private final TestStreamProducer testStreamProducer;
     private final LogStreamProducer logStreamProducer;
 
-	@GetMapping("/sendRabbitmq")
-	@ApiOperationSupport(order = 1)
-	@ApiOperation(value = "发送消息Rabbitmq", notes = "发送消息")
-	public R<Void> sendRabbitmq(@ApiParam("消息内容") String msg, @ApiParam("延时时间") Long delay) {
-		delayProducer.sendMsg(msg, delay);
-		return R.ok();
-	}
+    @GetMapping("/sendRabbitmq")
+    @ApiOperationSupport(order = 1)
+    @ApiOperation(value = "发送消息Rabbitmq", notes = "发送消息")
+    public R<Void> sendRabbitmq(@ApiParam("消息内容") String msg, @ApiParam("延时时间") Long delay) {
+        delayProducer.sendMsg(msg, delay);
+        return R.ok();
+    }
 
     @GetMapping("/sendRocketmq")
     @ApiOperationSupport(order = 2)
